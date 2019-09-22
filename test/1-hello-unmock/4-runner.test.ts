@@ -5,8 +5,9 @@
 // properties of an argument. so, our API is making
 // `isAdmin` required and `age` optional.
 
-// the runner may work for a few iterations, but eventually
-// it will fail. can you see why? can you propose a sensible
+// The runner may work for a few iterations, but eventually
+// it will fail for at least two reasons due to bugs in the function.
+// Can you see why? Can you propose a sensible
 // fix to the function without changing the API?
 
 import unmock, { u, runner } from "unmock";
