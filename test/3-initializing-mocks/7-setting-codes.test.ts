@@ -13,7 +13,7 @@ import unmock, { u, runner, transform } from "unmock";
 import axios from "axios";
 import { IService } from "unmock-core/dist/service/interfaces";
 
-const { withoutCodes } = transform;
+const { withCodes } = transform;
 
 unmock
   .nock("https://api.myservice.io", "myservice")
@@ -62,7 +62,7 @@ test(
 test(
   "200 will never yield error",
   runner(async () => {
-    myservice.state(withoutCodes(401));
+    myservice.state(withCodes(200));
     const split = await splitUsers();
     expect(split.error).toBe(false);
   })
