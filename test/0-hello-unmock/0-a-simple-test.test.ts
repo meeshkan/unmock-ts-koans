@@ -11,7 +11,7 @@ interface User {
 
 const splitUsers = (users: User[]) => ({
   admin: users.filter(user => user.isAdmin),
-  notAdmin: users.filter(user => user.isAdmin)
+  notAdmin: users.filter(user => !user.isAdmin)
 });
 
 test("users are split into admins and nonAdmins", () => {
