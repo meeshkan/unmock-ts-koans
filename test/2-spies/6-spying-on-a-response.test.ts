@@ -29,11 +29,11 @@ afterAll(() => {
 });
 
 const getUsers = async () => {
-  const { data } = await axios.delete("https://api.myservice.io/users/");
+  const { data } = await axios("https://api.myservice.io/users/");
   return { users: data, timestamp: new Date().getTime() };
 };
 
 test("users from our API are split into admins and nonAdmins", async () => {
   const users = await getUsers();
-  expect(users).toMatchObject(myservice.spy.getResponseBody());
+  expect(users).toMatchObject(JSON.parse(myservice.spy.getResponseBody()));
 });
