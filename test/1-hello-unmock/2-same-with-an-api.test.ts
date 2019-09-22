@@ -21,10 +21,7 @@ interface User {
 }
 
 beforeAll(() => {
-  // uh oh, we forgot to turn unmock on!
-  // let's check https://www.unmock.io/docs/introduction
-  // and remember, *always* turn unmock off in the afterAll bloc
-  // (we've done it for you below)
+  unmock.on();
 });
 afterAll(() => {
   unmock.off()
