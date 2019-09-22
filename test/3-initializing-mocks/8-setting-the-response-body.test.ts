@@ -15,9 +15,9 @@ const { withCodes, responseBody } = transform;
 unmock
   .nock("https://api.myservice.io", "myservice")
   .get("/users")
-  .reply(200, { users: u.array({ id: u.number(), isAdmin: u.boolean() })})
-  .reply(401, { message: "Not authorized"})
-  .reply(404, { message: "Not found"});
+  .reply(200, { users: u.array({ id: u.number(), isAdmin: u.boolean() }) })
+  .reply(401, { message: "Not authorized" })
+  .reply(404, { message: "Not found" });
 
 interface User {
   id: number;
@@ -39,7 +39,7 @@ const splitUsers = async () => {
       admin: data.users.filter((user: User) => user.isAdmin) as User[],
       notAdmin: data.users.filter((user: User) => !user.isAdmin) as User[],
       error: false
-    };  
+    };
   } catch (e) {
     return { admin: [], notAdmin: [], error: true };
   }
@@ -48,14 +48,15 @@ const splitUsers = async () => {
 const electAdmin = async () => {
   const users = await splitUsers();
   return users.admin[0];
-}
+};
 
 test(
   "we will always be able to elect an admin",
   runner(async () => {
     myservice.state(
       withCodes(200),
-      responseBody({lens: ["users"]}).const([]));
+      responseBody({ lens: ["users"] }).const([])
+    );
     const admin = await electAdmin();
     expect(admin.isAdmin).toBe(true);
   })

@@ -13,7 +13,9 @@ import { IService } from "unmock-core/dist/service/interfaces";
 unmock
   .nock("https://api.myservice.io", "myservice")
   .get("/users/")
-  .reply(200, { users: u.array({ id: u.integer(), name: u.string("name.firstName") })});
+  .reply(200, {
+    users: u.array({ id: u.integer(), name: u.string("name.firstName") })
+  });
 
 interface User {
   id: number;
