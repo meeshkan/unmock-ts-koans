@@ -59,5 +59,9 @@ test(
       expect(user.age).toBeLessThan(65);
       expect(user.isAdmin).toBe(true);
     });
+    split.unknownAgeAdmin.forEach(user => {
+      expect(user.age).toBe(null);
+      expect(user.isAdmin).toBe(true);
+    });
   })
 );
