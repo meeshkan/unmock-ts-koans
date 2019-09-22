@@ -31,14 +31,17 @@ const splitUsers = async () => {
     admin: data.filter((user: User) => user.isAdmin) as User[],
     notAdmin: data.filter((user: User) => !user.isAdmin) as User[]
   };
-}
+};
 
-test("randomly generated users from our API are split into admins and nonAdmins", runner(async () => {
-  const split = await splitUsers();
-  split.admin.forEach(user => {
-    expect(user.isAdmin).toBe(true);
+test(
+  "randomly generated users from our API are split into admins and nonAdmins",
+  runner(async () => {
+    const split = await splitUsers();
+    split.admin.forEach(user => {
+      expect(user.isAdmin).toBe(true);
+    });
+    split.notAdmin.forEach(user => {
+      expect(user.isAdmin).toBe(false);
+    });
   })
-  split.notAdmin.forEach(user => {
-    expect(user.isAdmin).toBe(false);
-  })
-}));
+);

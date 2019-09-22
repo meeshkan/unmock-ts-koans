@@ -10,10 +10,7 @@ import axios from "axios";
 unmock
   .nock("https://api.myservice.io")
   .get("/users")
-  .reply(200, [
-    { id: 1, isAdmin: true },
-    { id: 2, isAdmin: false }
-  ]);
+  .reply(200, [{ id: 1, isAdmin: true }, { id: 2, isAdmin: false }]);
 
 interface User {
   id: number;
@@ -24,7 +21,7 @@ beforeAll(() => {
   unmock.on();
 });
 afterAll(() => {
-  unmock.off()
+  unmock.off();
 });
 
 const splitUsers = async () => {
@@ -33,7 +30,7 @@ const splitUsers = async () => {
     admin: data.filter((user: User) => user.isAdmin) as User[],
     notAdmin: data.filter((user: User) => !user.isAdmin) as User[]
   };
-}
+};
 
 test("users from our API are split into admins and nonAdmins", async () => {
   const split = await splitUsers();
