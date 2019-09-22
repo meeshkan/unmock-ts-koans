@@ -36,7 +36,7 @@ const deleteUser = async (id: number) => {
   await axios.delete("https://api.myservice.io/users/"+id);
 };
 
-test("users from our API are split into admins and nonAdmins", async () => {
+test("the request path contains the id", async () => {
   await deleteUser(42);
   expect(+myservice.spy.deleteRequestPath().split("/").slice(-1)).toBe(42);
 });
