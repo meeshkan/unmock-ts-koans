@@ -38,5 +38,5 @@ const deleteUser = async (id: number) => {
 
 test("users from our API are split into admins and nonAdmins", async () => {
   await deleteUser(42);
-  expect(+myservice.spy.postRequestPath().split("/").slice(-1)).toBe(42);
+  expect(+myservice.spy.deleteRequestPath().split("/").slice(-1)).toBe(42);
 });
