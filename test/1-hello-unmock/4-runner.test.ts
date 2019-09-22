@@ -15,10 +15,13 @@ import axios from "axios";
 unmock
   .nock("https://api.myservice.io")
   .get("/users")
-  .reply(200, u.array({
-    isAdmin: u.boolean(),
-    age: u.anyOf([u.integer({ minimum: 0 }), u.nul()])
-  }));
+  .reply(
+    200,
+    u.array({
+      isAdmin: u.boolean(),
+      age: u.anyOf([u.integer({ minimum: 0 }), u.nul()])
+    })
+  );
 
 interface User {
   age: number;
@@ -31,21 +34,30 @@ afterAll(() => unmock.off());
 const splitUsers = async () => {
   const { data } = await axios("https://api.myservice.io/users");
   return {
-    seniorAdmin: data.filter((user: User) => user.isAdmin && user.age >= 65) as User[],
-    juniorAdmin: data.filter((user: User) => user.isAdmin  && user.age < 65) as User[],
-    unknownAgeAdmin: data.filter((user: User) => user.isAdmin  && !user.age) as User[],
+    seniorAdmin: data.filter(
+      (user: User) => user.isAdmin && user.age >= 65
+    ) as User[],
+    juniorAdmin: data.filter(
+      (user: User) => user.isAdmin && user.age < 65
+    ) as User[],
+    unknownAgeAdmin: data.filter(
+      (user: User) => user.isAdmin && !user.age
+    ) as User[],
     notAdmin: data.filter((user: User) => !user.isAdmin) as User[]
   };
-}
+};
 
-test("only seniors are in seniorAdmin", runner(async () => {
-  const split = await splitUsers();
-  split.seniorAdmin.forEach(user => {
-    expect(user.age).toBeGreaterThanOrEqual(65);
-    expect(user.isAdmin).toBe(true);
-  });
-  split.juniorAdmin.forEach(user => {
-    expect(user.age).toBeLessThan(65);
-    expect(user.isAdmin).toBe(true);
-  });
-}));
+test(
+  "only seniors are in seniorAdmin",
+  runner(async () => {
+    const split = await splitUsers();
+    split.seniorAdmin.forEach(user => {
+      expect(user.age).toBeGreaterThanOrEqual(65);
+      expect(user.isAdmin).toBe(true);
+    });
+    split.juniorAdmin.forEach(user => {
+      expect(user.age).toBeLessThan(65);
+      expect(user.isAdmin).toBe(true);
+    });
+  })
+);
