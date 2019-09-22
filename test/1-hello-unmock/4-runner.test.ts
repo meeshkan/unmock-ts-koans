@@ -35,13 +35,13 @@ const splitUsers = async () => {
   const { data } = await axios("https://api.myservice.io/users");
   return {
     seniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age >= 65
+      (user: User) => user.isAdmin && user.age !== null && user.age >= 65
     ) as User[],
     juniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age < 65
+      (user: User) => user.isAdmin && user.age !== null && user.age < 65
     ) as User[],
     unknownAgeAdmin: data.filter(
-      (user: User) => user.isAdmin && !user.age
+      (user: User) => user.isAdmin && user.age === null
     ) as User[],
     notAdmin: data.filter((user: User) => !user.isAdmin) as User[]
   };
@@ -57,6 +57,10 @@ test(
     });
     split.juniorAdmin.forEach(user => {
       expect(user.age).toBeLessThan(65);
+      expect(user.isAdmin).toBe(true);
+    });
+    split.unknownAgeAdmin.forEach(user => {
+      expect(user.age).toBe(null);
       expect(user.isAdmin).toBe(true);
     });
   })
