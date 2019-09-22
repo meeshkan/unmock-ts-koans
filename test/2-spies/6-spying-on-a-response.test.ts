@@ -33,7 +33,8 @@ const getUsers = async () => {
   return { users: data, timestamp: new Date().getTime() };
 };
 
-test("users from our API are split into admins and nonAdmins", async () => {
+test("the users object is correctly blended into the timestamped object", async () => {
   const users = await getUsers();
   expect(users).toMatchObject(JSON.parse(myservice.spy.getResponseBody()));
+  expect(users.timestamp).toBeGreaterThan(0);
 });

@@ -11,7 +11,10 @@
     "test-3": "jest test/1-hello-unmock/3-use-variable-input.test.ts",
     "test-4": "jest test/1-hello-unmock/4-runner.test.ts",
     "test-5": "jest test/2-spies/5-spying-on-a-request.test.ts",
-    "test-6": "jest test/2-spies/6-spying-on-a-response.test.ts"
+    "test-6": "jest test/2-spies/6-spying-on-a-response.test.ts",
+    "test-7": "jest test/3-initializing-mocks/7-setting-codes.test.ts",
+    "test-8": "jest test/3-initializing-mocks/8-setting-the-response-body.test.ts",
+    "test-9": "jest test/3-initializing-mocks/9-setting-a-number-of-times.test.ts"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
