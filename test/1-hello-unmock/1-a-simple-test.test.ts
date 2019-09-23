@@ -2,7 +2,7 @@
 // that splits arrays of users into an object containing
 // admins and nonAdmins
 
-// the test is failing. can you make it pass?
+// the test is failing. can you edit the function to make it pass?
 
 interface User {
   id: number;
