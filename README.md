@@ -16,7 +16,7 @@ Then, run the first koan.
 $ yarn test-1
 ```
 
-It will fail, and there are comments in the [first test file](tests/1-hello-unmock/1-a-simple-test.test.ts) with hints on how to fix it.
+It will fail, and there are comments in the [first test file](test/1-hello-unmock/1-a-simple-test.test.ts) with hints on how to fix it.
 
 Once you get this koan to pass, congratulate yourself! Then, run the second koan.
 
