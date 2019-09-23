@@ -26,7 +26,7 @@ $ yarn test-2
 
 And so on and so forth until you have run all of the koans.
 
-Then, when you are done, you can bask in the gloary of lots of correct koans by running the following.
+Then, when you are done, you can bask in the glory of lots of correct koans by running the following.
 
 ```bash
 $ yarn test
