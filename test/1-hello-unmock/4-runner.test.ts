@@ -51,6 +51,7 @@ const splitUsers = async () => {
 test(
   "only seniors are in seniorAdmin",
   runner(async () => {
+    console.log("Hello!");
     const split = await splitUsers();
     split.seniorAdmin.forEach(user => {
       expect(user.age).toBeGreaterThanOrEqual(65);
