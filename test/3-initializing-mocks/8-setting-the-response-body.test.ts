@@ -15,9 +15,14 @@ const { withCodes, responseBody } = transform;
 unmock
   .nock("https://api.myservice.io", "myservice")
   .get("/users")
-  .reply(200, { users: u.array({ id: u.number(), isAdmin: u.boolean() }) })
-  .reply(401, { message: "Not authorized" })
-  .reply(404, { message: "Not found" });
+  .reply(200, { users: { id: u.number(), isAdmin: u.boolean() } });
+
+
+unmock
+  .nock("https://api.storage.io", "storage")
+  .get("/")
+  .reply(200, { foosers: { id: u.number(), isAdmin: u.boolean() } });
+
 
 interface User {
   id: number;
@@ -25,39 +30,33 @@ interface User {
 }
 
 let myservice: IService;
+let storage: IService;
 beforeAll(() => {
-  myservice = unmock.on().services.myservice;
+  const services = unmock.on().services;
+  myservice = services.myservice;
+  storage = services.storage;
 });
 afterAll(() => {
   unmock.off();
 });
 
-const splitUsers = async () => {
-  try {
-    const { data } = await axios("https://api.myservice.io/users");
+const getUsersAndFoosers = async () => {
+ 
+    const users = await axios("https://api.myservice.io/users");
+    const foosers = await axios("https://api.storage.io");
     return {
-      admin: data.users.filter((user: User) => user.isAdmin) as User[],
-      notAdmin: data.users.filter((user: User) => !user.isAdmin) as User[],
-      error: false
-    };
-  } catch (e) {
-    return { admin: [], notAdmin: [], error: true };
-  }
-};
-
-const electAdmin = async () => {
-  const users = await splitUsers();
-  return users.admin[0];
-};
+      users: users.data,
+      foosers: foosers.data,
+    }
+  };
 
 test(
   "we will always be able to elect an admin",
   runner(async () => {
     myservice.state(
-      withCodes(200),
-      responseBody({ lens: ["users"] }).const([])
+      responseBody({ lens: ["id"] }).const(45)
     );
-    const admin = await electAdmin();
-    expect(admin.isAdmin).toBe(true);
+    const uf = await getUsersAndFoosers();
+    expect(uf.users.id).toBe(uf.foosers.id);
   })
 );
