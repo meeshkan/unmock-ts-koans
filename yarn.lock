@@ -99,9 +99,9 @@
     "@babel/helper-plugin-utils" "^7.0.0"
 
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.4.5":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.0.tgz#4fc1d642a9fd0299754e8b5de62c631cf5568205"
-  integrity sha512-89eSBLJsxNxOERC0Op4vd+0Bqm6wRMqMbFtV3i0/fbaWw/mJ8Q3eBvgX0G4SyrOOLCtbu98HspF8o09MRT+KzQ==
+  version "7.6.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.2.tgz#c3d6e41b304ef10dcf13777a33e7694ec4a9a6dd"
+  integrity sha512-EXxN64agfUqqIGeEjI5dL5z0Sw0ZwWo1mLTi4mQowCZ42O59b7DRpZAnTC6OqdF28wMBMFKNb/4uFGrVaigSpg==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -969,9 +969,9 @@ colornames@^1.1.1:
   integrity sha1-+IiQMGhcfE/54qVZ9Qd+t2qBb5Y=
 
 colors@^1.2.1:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/colors/-/colors-1.3.3.tgz#39e005d546afe01e01f9c4ca8fa50f686a01205d"
-  integrity sha512-mmGt/1pZqYRjMxB1axhTo16/snVZ5krrKkcmMeVKxzECMMXoCgnvTPp10QgHfcbQZw8Dq2jMNG6je4JlWU0gWg==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
+  integrity sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
 
 colorspace@1.1.x:
   version "1.1.2"
@@ -3233,10 +3233,10 @@ ono@^4.0.11:
   dependencies:
     format-util "^1.0.3"
 
-openapi-refinements@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/openapi-refinements/-/openapi-refinements-0.3.4.tgz#77fd7e214cc41c97e558e29bd69bce24ea88c07a"
-  integrity sha512-x832U7Ea0CGX/hiTrNSXV156Gc82NolfZ1AdlBXKd2N3r3NgIvhDUTIcWPKOYJkh+dIOEFhfNt2ObPj0GdHPhg==
+openapi-refinements@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/openapi-refinements/-/openapi-refinements-0.3.5.tgz#873b4acad9e9f0ebb6d1ef8ef00a518053205e38"
+  integrity sha512-slfPUaYRlXo6hW6/YxFL5vEjjXjfAOdCaHSx7b9CUNQ2I0N/MaIPpEV+OLRq4gYtkDCYhgH7QWOSNjNlXdXAXQ==
   dependencies:
     jsonschema "^1.2.4"
 
@@ -3870,9 +3870,9 @@ simple-swizzle@^0.2.2:
     is-arrayish "^0.3.1"
 
 sinon@^7.4.1:
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.4.2.tgz#ecd54158fef2fcfbdb231a3fa55140e8cb02ad6c"
-  integrity sha512-pY5RY99DKelU3pjNxcWo6XqeB1S118GBcVIIdDi6V+h6hevn1izcg2xv1hTHW/sViRXU7sUOxt4wTUJ3gsW2CQ==
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.5.0.tgz#e9488ea466070ea908fd44a3d6478fd4923c67ec"
+  integrity sha512-AoD0oJWerp0/rY9czP/D6hDTTUYGpObhZjMpd7Cl/A6+j0xBE+ayL/ldfggkBXUs0IkvIiM1ljM8+WkOc5k78Q==
   dependencies:
     "@sinonjs/commons" "^1.4.0"
     "@sinonjs/formatio" "^3.2.1"
@@ -4364,19 +4364,19 @@ union-value@^1.0.0:
     is-extendable "^0.1.1"
     set-value "^2.0.1"
 
-unmock-cli@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/unmock-cli/-/unmock-cli-0.3.4.tgz#42691460efb933754d100f47dbe573f1ee532e68"
-  integrity sha512-1E6DEQJ1ipXm6x2RM4qD/fjlr/KvBHoh20bwDZ1B8OTGYdFL7RT2nDoS4+6RynFnxrXtqIxJh3Niy73MsNXodg==
+unmock-cli@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/unmock-cli/-/unmock-cli-0.3.5.tgz#c5ca2f40e750f1c9874f3006a3a57c5584277bd5"
+  integrity sha512-prtKV6JiRra1YlVsNUGlJj32pb4wTBTAHHmdf7D3JvvGg5BHkjF4vC8UgPyg6sBvL1eiToPgsCfqqQeJvQtEZw==
   dependencies:
     commander "^2.20.0"
     glob "^7.1.3"
-    unmock-core "^0.3.4"
+    unmock-core "^0.3.5"
 
-unmock-core@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/unmock-core/-/unmock-core-0.3.4.tgz#d2a5e407ea478774cb50c7867a7da9d765bd93bf"
-  integrity sha512-BoEKzj7sPxgFHf1dPucjdFuBad8tDWNrYSM127FFL7OSK8Pd49cGvyd3A/9NW0oBvoTl046s6e0Qf4m2CgSUFA==
+unmock-core@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/unmock-core/-/unmock-core-0.3.5.tgz#c2977c3b17870f8224de09bdea5ad8c9a541cf8b"
+  integrity sha512-/Bp2aMMzLX03uWZbsw2WdZUGGRKC9MghASlcM9vJp5VP+u2riWyVpUnAb3YNg6Zr0f6+6nrAw8cuqJA6Wa/+ww==
   dependencies:
     "@types/sinon" "^7.0.13"
     ajv "^6.10.0"
@@ -4404,7 +4404,7 @@ unmock-core@^0.3.4:
     mkdirp "^0.5.1"
     monocle-ts "^2.0.0"
     node-fetch "^2.6.0"
-    openapi-refinements "^0.3.4"
+    openapi-refinements "^0.3.5"
     query-string "^6.8.3"
     querystring "^0.2.0"
     readable-stream "^3.4.0"
@@ -4415,13 +4415,13 @@ unmock-core@^0.3.4:
     uuid "^3.3.2"
     winston "^3.2.1"
 
-unmock@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/unmock/-/unmock-0.3.4.tgz#a400eebe580d3c5be823c6a888ff07532adb8b68"
-  integrity sha512-HYjLqQgDKK8W0K3vSWaXinrwI7b6UxMqhoCEwvd82+XOYDa+OOnGMXJv375xmStpjXrB67n/ojqk6Cy3kayxNw==
+unmock@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/unmock/-/unmock-0.3.5.tgz#ffb576a2cb79e89e33baa42ca7be18763c1a459d"
+  integrity sha512-1fH6qGe+LY8P1m27aJZJ2qvY9n1Girjg6jsEt4zoekQl0IBcoX+F6g5hGOCIgs/QxHCZKYQWErG4qgkMfK/u7A==
   dependencies:
-    unmock-cli "^0.3.4"
-    unmock-core "^0.3.4"
+    unmock-cli "^0.3.5"
+    unmock-core "^0.3.5"
 
 unset-value@^1.0.0:
   version "1.0.0"
