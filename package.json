@@ -23,6 +23,6 @@
     "prettier": "^1.18.2",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3",
-    "unmock": "^0.3.4"
+    "unmock": "^0.3.5"
   }
 }
