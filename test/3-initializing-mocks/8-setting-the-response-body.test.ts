@@ -55,9 +55,10 @@ test(
   runner(async () => {
     myservice.state(
       withCodes(200),
-      responseBody({ lens: ["users"] }).const([])
+      responseBody({ lens: ["users"]}).minItems(5),
+      responseBody({ lens: ["users"] }).maxItems(100)
     );
     const admin = await electAdmin();
-    expect(admin.isAdmin).toBe(true);
+    expect(!admin || admin.isAdmin).toBe(true);
   })
 );

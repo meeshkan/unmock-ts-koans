@@ -1,19 +1,19 @@
 // sometimes, we would like to initialize a service to a particular state.
 // in unmock, we do this with the state function, and we use transformers
-// like withoutCodes below to set mocks to an initial place,
+// like withCodes below to set mocks to an initial place,
 // like returning a given status code or returning data with a particular
 // shape (a particular array size, certain fields being required, etc)
 
-// here, we use withoutCodes to rule out the error code and test the happy path. but oops...
+// here, we use withCodes to rule out the error code and test the happy path. but oops...
 // looks like there are still some non-error responses.
 // we probably should have used withCodes to include only successful
-// responses instead of withoutCodes. can you fix that?
+// responses instead of withCodes. can you fix that?
 
 import unmock, { u, runner, transform } from "unmock";
 import axios from "axios";
 import { IService } from "unmock-core/dist/service/interfaces";
 
-const { withoutCodes } = transform;
+const { withCodes } = transform;
 
 unmock
   .nock("https://api.myservice.io", "myservice")
@@ -62,7 +62,7 @@ test(
 test(
   "200 will never yield error",
   runner(async () => {
-    myservice.state(withoutCodes(401));
+    myservice.state(withCodes(200));
     const split = await splitUsers();
     expect(split.error).toBe(false);
   })

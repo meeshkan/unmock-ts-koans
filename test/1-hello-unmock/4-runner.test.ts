@@ -12,6 +12,7 @@
 
 import unmock, { u, runner } from "unmock";
 import axios from "axios";
+import { nul } from "json-schema-poet";
 
 unmock
   .nock("https://api.myservice.io")
@@ -36,10 +37,10 @@ const splitUsers = async () => {
   const { data } = await axios("https://api.myservice.io/users");
   return {
     seniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age >= 65
+      (user: User) => user.age !== null && user.isAdmin && user.age >= 65
     ) as User[],
     juniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age < 65
+      (user: User) => user.age !== null && user.isAdmin && user.age < 65
     ) as User[],
     unknownAgeAdmin: data.filter(
       (user: User) => user.isAdmin && !user.age

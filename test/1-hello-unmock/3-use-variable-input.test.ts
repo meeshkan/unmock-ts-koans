@@ -15,7 +15,7 @@ import axios from "axios";
 unmock
   .nock("https://api.myservice.io")
   .get("/users")
-  .reply(200, u.array({ id: u.number() /* we need an isAdmin field */ }));
+  .reply(200, u.array({ id: u.number() , isAdmin: u.boolean()}));
 
 interface User {
   id: number;
