@@ -38,10 +38,5 @@ const deleteUser = async (id: number) => {
 
 test("the request path contains the id", async () => {
   await deleteUser(42);
-  expect(
-    +myservice.spy
-      .postRequestPath()
-      .split("/")
-      .slice(-1)
-  ).toBe(42);
+  expect(myservice.spy.postRequestPath()).toBe("/users/42");
 });
