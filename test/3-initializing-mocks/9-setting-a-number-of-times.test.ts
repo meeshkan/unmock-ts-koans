@@ -57,7 +57,7 @@ test(
 test(
   "the first and second call to our API will always return 200",
   runner(async () => {
-    myservice.state(times(1)(withCodes(200)));
+    myservice.state((req, o) => times(1)(withCodes(200))(req, o));
     const split0 = await splitUsers();
     expect(split0.error).toBe(false);
     const split1 = await splitUsers();

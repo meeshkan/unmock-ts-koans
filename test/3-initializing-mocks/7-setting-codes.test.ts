@@ -62,7 +62,7 @@ test(
 test(
   "200 will never yield error",
   runner(async () => {
-    myservice.state(withoutCodes(401));
+    myservice.state(withoutCodes([401, 404]));
     const split = await splitUsers();
     expect(split.error).toBe(false);
   })
