@@ -40,7 +40,7 @@ test("the request path contains the id", async () => {
   await deleteUser(42);
   expect(
     +myservice.spy
-      .postRequestPath()
+      .deleteRequestPath()
       .split("/")
       .slice(-1)
   ).toBe(42);
