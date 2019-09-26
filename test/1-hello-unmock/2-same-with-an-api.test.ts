@@ -7,8 +7,8 @@
 import unmock from "unmock";
 import axios from "axios";
 
-unmock
-  .nock("https://api.myservice.io")
+unmock.
+  nock("https://api.myservice.io")
   .get("/users")
   .reply(200, [{ id: 1, isAdmin: true }, { id: 2, isAdmin: false }]);
 
@@ -18,10 +18,7 @@ interface User {
 }
 
 beforeAll(() => {
-  // uh oh, we forgot to turn unmock on!
-  // let's check https://www.unmock.io/docs/introduction
-  // and remember, *always* turn unmock off in the afterAll bloc
-  // (we've done it for you below)
+  unmock.on();
 });
 afterAll(() => {
   unmock.off();
