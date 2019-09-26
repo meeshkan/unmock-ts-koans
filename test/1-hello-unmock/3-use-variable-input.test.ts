@@ -9,13 +9,13 @@
 // we are generating an `id` field, but where did our `isAdmin`
 // field go? can you see how to generate it?
 
-import unmock, { u, runner } from "unmock";
+import unmock, { u } from "unmock";
 import axios from "axios";
 
 unmock
   .nock("https://api.myservice.io")
   .get("/users")
-  .reply(200, u.array({ id: u.number() /* we need an isAdmin field */ }));
+  .reply(200, u.array({ id: u.number(), isAdmin: u.boolean() }));
 
 interface User {
   id: number;
@@ -35,7 +35,7 @@ const splitUsers = async () => {
 
 test(
   "randomly generated users from our API are split into admins and nonAdmins",
-  runner(async () => {
+  async () => {
     const split = await splitUsers();
     split.admin.forEach(user => {
       expect(user.isAdmin).toBe(true);
@@ -43,5 +43,5 @@ test(
     split.notAdmin.forEach(user => {
       expect(user.isAdmin).toBe(false);
     });
-  })
+  }
 );
