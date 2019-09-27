@@ -13,9 +13,17 @@ import unmock, { u, runner } from "unmock";
 import axios from "axios";
 
 unmock
-  .nock("https://api.myservice.io")
-  .get("/users")
-  .reply(200, u.array({ id: u.number(), isAdmin: u.boolean() }));
+  .nock("https://api.my-crm.io")
+  .get("/articles")
+  .reply(200, {
+    articles: u.array(u.type({
+      id: u.number(),
+      text: u.string(),
+      author: u.string()
+    }, {
+      isFriendOfAnett: u.boolean()
+    }))
+  });
 
 interface User {
   id: number;
@@ -25,23 +33,15 @@ interface User {
 beforeAll(() => unmock.on());
 afterAll(() => unmock.off());
 
-const splitUsers = async () => {
-  const { data } = await axios("https://api.myservice.io/users");
-  return {
-    admin: data.filter((user: User) => user.isAdmin) as User[],
-    notAdmin: data.filter((user: User) => !user.isAdmin) as User[]
-  };
+const getArticles = async () => {
+  const { data } = await axios("https://api.my-crm.io/articles");
+  return data.articles;
 };
 
 test(
   "randomly generated users from our API are split into admins and nonAdmins",
   runner(async () => {
-    const split = await splitUsers();
-    split.admin.forEach(user => {
-      expect(user.isAdmin).toBe(true);
-    });
-    split.notAdmin.forEach(user => {
-      expect(user.isAdmin).toBe(false);
-    });
+    const split = await getArticles();
+    console.log(split);
   })
 );
