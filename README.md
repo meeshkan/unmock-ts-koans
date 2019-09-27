@@ -31,3 +31,11 @@ Then, when you are done, you can bask in the glory of lots of correct koans by r
 ```bash
 $ yarn test
 ```
+
+## Sharing your work
+
+If you've completed the koans and want to share your answers, just make a PR! Check out some of the branches for inspiration. Some people also use PRs for help if/when they get stuck - thanks to everyone who has given a hand.
+
+## Contributing a new test
+
+Some people that have shared their branches have added extra tests. If you want your test to be merged into the main branch, please make a PR to `master` with the "wrong" version and `answers` with the correction.
