@@ -10,11 +10,14 @@
 // Can you see why? Can you propose a sensible
 // fix to the function without changing the API?
 
-import unmock, { u, runner } from "unmock";
+import unmock, { u, runner, transform, Arr } from "unmock";
 import axios from "axios";
+import { IService } from "unmock-core/dist/service/interfaces";
+
+const { responseBody } = transform;
 
 unmock
-  .nock("https://api.myservice.io")
+  .nock("https://api.myservice.io", "foobar")
   .get("/users")
   .reply(
     200,
@@ -29,17 +32,18 @@ interface User {
   isAdmin: boolean;
 }
 
-beforeAll(() => unmock.on());
+let foobar:  IService;
+beforeAll(() => { foobar = unmock.on().services.foobar; } );
 afterAll(() => unmock.off());
 
 const splitUsers = async () => {
   const { data } = await axios("https://api.myservice.io/users");
   return {
     seniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age >= 65
+      (user: User) => user.age !== null && user.isAdmin && user.age >= 65
     ) as User[],
     juniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age < 65
+      (user: User) => user.age !== null && user.isAdmin && user.age < 65
     ) as User[],
     unknownAgeAdmin: data.filter(
       (user: User) => user.isAdmin && !user.age
@@ -51,7 +55,11 @@ const splitUsers = async () => {
 test(
   "only seniors are in seniorAdmin",
   runner(async () => {
+    foobar.state(
+      (req, o) => { const idx = Math.random() > 0.9 ? 0 : 1; return responseBody({ lens: [Arr]}).anyOfKeep([idx])(req, o); }
+    )
     const split = await splitUsers();
+    console.log(JSON.stringify(split));
     split.seniorAdmin.forEach(user => {
       expect(user.age).toBeGreaterThanOrEqual(65);
       expect(user.isAdmin).toBe(true);

@@ -55,7 +55,7 @@ test(
   runner(async () => {
     myservice.state(
       withCodes(200),
-      responseBody({ lens: ["users"] }).const([])
+      responseBody({ lens: ["users"] }).const([{id: 1, isAdmin: true}])
     );
     const admin = await electAdmin();
     expect(admin.isAdmin).toBe(true);

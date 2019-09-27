@@ -32,7 +32,7 @@ afterAll(() => {
 
 const getUsers = async () => {
   const { data } = await axios("https://api.myservice.io/users/");
-  return { users: data, timestamp: new Date().getTime() };
+  return { users: data.users, timestamp: new Date().getTime() };
 };
 
 test("the users object is correctly blended into the timestamped object", async () => {
