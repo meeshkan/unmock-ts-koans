@@ -47,6 +47,9 @@ const splitUsers = async () => {
 
 const electAdmin = async () => {
   const users = await splitUsers();
+  if (users.admin.length === 0) {
+    throw Error("No admin!")
+  }
   return users.admin[0];
 };
 
@@ -57,7 +60,6 @@ test(
       withCodes(200),
       responseBody({ lens: ["users"] }).const([])
     );
-    const admin = await electAdmin();
-    expect(admin.isAdmin).toBe(true);
+    await expect(electAdmin()).rejects.toThrow();
   })
 );
