@@ -1,6 +1,6 @@
 # unmock-ts-koans
 
-Koans are a great way to learn a new language or library. These koans will teach you how to use unmock in typescript.
+Koans are a great way to learn a new language or library! These koans will teach you how to use unmock in typescript.
 
 ## Running the koans
 
