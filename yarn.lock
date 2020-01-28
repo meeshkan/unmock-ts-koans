@@ -4456,10 +4456,10 @@ unmock-core@^0.3.7:
     uuid "^3.3.2"
     winston "^3.2.1"
 
-unmock-jest@^0.3.7:
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/unmock-jest/-/unmock-jest-0.3.7.tgz#2047c2282b24d48eb5f5c7e93bf539f398d8637a"
-  integrity sha512-i/99IXfAAKZRIzpzsTHeva2l1m3LEFZOpDB4eLB3u4OUKcucLcxjxBNTnjIOTUXMW4Z0/3yRfXty+7m570vm+A==
+unmock-jest@^0.3.12:
+  version "0.3.12"
+  resolved "https://registry.yarnpkg.com/unmock-jest/-/unmock-jest-0.3.12.tgz#1c661006cecee608b38d267bf98f409c11e005fb"
+  integrity sha512-s5blry8nLIWVsrk8bN9BM7WVWyAQfcHt3Fd0quKY8zdfyAqb5FA0fMFM++pXdq7AFd7CsU023raHGUv/hMjh4g==
   dependencies:
     chalk "^2.4.2"
     debug "^4.1.1"
