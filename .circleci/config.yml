@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+orbs:
+    unmock: unmock/unmock@volatile
 jobs:
   build:
     docker:
@@ -35,3 +37,7 @@ jobs:
 
       # run tests!
       - run: yarn test
+
+      # the unmock orb
+      - unmock/upload:
+        file: __unmock__/report.html
