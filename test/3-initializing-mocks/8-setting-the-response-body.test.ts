@@ -10,12 +10,15 @@ import unmock, { u, runner, transform } from "unmock";
 import axios from "axios";
 import { IService } from "unmock-core/dist/service/interfaces";
 
-const { withCodes, responseBody } = transform;
+const { withCodes, responseBody, noopThrows } = transform;
 
 unmock
   .nock("https://api.myservice.io", "myservice")
   .get("/users")
-  .reply(200, { users: u.array({ id: u.number(), isAdmin: u.boolean() }) })
+  .reply(200, { 
+    users: u.array({ id: u.number(), isAdmin: u.boolean() }),
+    cars: u.array(u.number())
+  })
   .reply(401, { message: "Not authorized" })
   .reply(404, { message: "Not found" });
 
@@ -55,7 +58,8 @@ test(
   runner(async () => {
     myservice.state(
       withCodes(200),
-      responseBody({ lens: ["users"] }).const([])
+      responseBody({ lens: ["users"] }).const([]),
+      responseBody({ lens: ["cars"]}).minItems(5)
     );
     const admin = await electAdmin();
     expect(admin.isAdmin).toBe(true);
