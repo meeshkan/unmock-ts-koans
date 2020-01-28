@@ -37,7 +37,3 @@ jobs:
 
       # run tests!
       - run: yarn test
-
-      # the unmock orb
-      - unmock/upload:
-          file: __unmock__/report.html
