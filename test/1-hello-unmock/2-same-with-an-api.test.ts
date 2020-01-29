@@ -10,13 +10,13 @@ import axios from "axios";
 unmock
   .nock("https://api.myservice.io")
   .get("/users")
-  .reply(200, [{ id: 1, isAdmin: true }, { id: 2, isAdmin: false }]);
+  .reply(200, [{ id: 1, age: 42, isAdmin: true }, { id: 2, isAdmin: false }]);
 
-interface User {
-  id: number;
-  isAdmin: boolean;
-}
-
+  interface User {
+    id: number;
+    age?: number;
+    isAdmin: boolean;
+  }
 beforeAll(() => {
   // uh oh, we forgot to turn unmock on!
   // let's check https://www.unmock.io/docs/introduction
@@ -37,6 +37,6 @@ const splitUsers = async () => {
 
 test("users from our API are split into admins and nonAdmins", async () => {
   const split = await splitUsers();
-  expect(split.admin).toEqual([{ id: 1, isAdmin: true }]);
+  expect(split.admin).toEqual([{ id: 1, age: 42, isAdmin: true }]);
   expect(split.notAdmin).toEqual([{ id: 2, isAdmin: false }]);
 });

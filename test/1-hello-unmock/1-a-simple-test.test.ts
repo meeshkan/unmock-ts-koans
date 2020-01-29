@@ -12,7 +12,7 @@ interface User {
 
 const splitUsers = (users: User[]) => ({
   admin: users.filter(user => user.isAdmin),
-  notAdmin: users.filter(user => user.isAdmin)
+  notAdmin: users.filter(user => !user.isAdmin)
 });
 
 test("users are split into admins and nonAdmins", () => {
@@ -20,6 +20,6 @@ test("users are split into admins and nonAdmins", () => {
     { id: 1, age: 42, isAdmin: true },
     { id: 2, isAdmin: false }
   ]);
-  expect(split.admin).toEqual([{ id: 1, isAdmin: true }]);
+  expect(split.admin).toEqual([{ id: 1, age: 42, isAdmin: true }]);
   expect(split.notAdmin).toEqual([{ id: 2, isAdmin: false }]);
 });
