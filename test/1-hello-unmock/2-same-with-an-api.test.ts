@@ -12,11 +12,12 @@ unmock
   .get("/users")
   .reply(200, [{ id: 1, age: 42, isAdmin: true }, { id: 2, isAdmin: false }]);
 
-  interface User {
-    id: number;
-    age?: number;
-    isAdmin: boolean;
-  }
+interface User {
+  id: number;
+  age?: number;
+  isAdmin: boolean;
+}
+
 beforeAll(() => {
   // uh oh, we forgot to turn unmock on!
   // let's check https://www.unmock.io/docs/introduction
