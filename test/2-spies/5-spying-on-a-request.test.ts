@@ -12,16 +12,16 @@
 
 import unmock from "unmock";
 import axios from "axios";
-import { IService } from "unmock-core/dist/service/interfaces";
+import { ServiceSpy } from "unmock-core/dist/service/spy";
 
 unmock
   .nock("https://api.myservice.io", "myservice")
   .delete("/users/{id}")
   .reply(201);
 
-let myservice: IService;
+let myserviceSpy: ServiceSpy;
 beforeAll(() => {
-  myservice = unmock.on().services.myservice;
+  myserviceSpy = unmock.on().services.myservice.spy;
 });
 afterAll(() => {
   unmock.off();
@@ -33,5 +33,5 @@ const deleteUser = async (id: number) => {
 
 test("the request path contains the id", async () => {
   await deleteUser(42);
-  expect(myservice.spy.postRequestPath()).toBe("/users/42");
+  expect(myserviceSpy.postRequestPath()).toBe("/users/42");
 });
