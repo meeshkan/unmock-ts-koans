@@ -13,15 +13,17 @@ unmock
   .nock("https://api.myservice.io")
   .get("/users")
   .reply(200, u.array({
-    id: u.number(),
-    age: u.opt(u.integer())
+    id: u.integer(),
+    age: u.opt(u.integer({ minimum: 0 }))
     /* we need an isAdmin field */
   }));
 
-interface User {
-  id: number;
-  isAdmin: boolean;
-}
+  interface User {
+    id: number;
+    age?: number;
+    isAdmin: boolean;
+  }
+  
 
 beforeAll(() => unmock.on());
 afterAll(() => unmock.off());

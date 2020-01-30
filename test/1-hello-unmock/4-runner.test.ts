@@ -10,59 +10,55 @@
 // Can you see why? Can you propose a sensible
 // fix to the function without changing the API?
 
+// let's use the same function, but with indeterminate results
+// we accomplish this using the `u` syntax in the reply method
+// below.
+
+// but wait, something does not seem quite right in the reply bloc...
+// we are generating an `id` field, but where did our `isAdmin`
+// field go? can you see how to generate it?
+
 import unmock, { u, runner } from "unmock";
 import axios from "axios";
+import _ from "lodash";
 
 unmock
   .nock("https://api.myservice.io")
   .get("/users")
-  .reply(
-    200,
-    u.array({
-      isAdmin: u.boolean(),
-      age: u.anyOf([u.integer({ minimum: 0 }), u.nul()])
-    })
-  );
+  .reply(200, u.array({
+    id: u.integer(),
+    age: u.opt(u.integer({ minimum: 0 })),
+    isAdmin: u.boolean()
+  }));
 
-interface User {
-  age: number;
-  isAdmin: boolean;
-}
+  interface User {
+    id: number;
+    age?: number;
+    isAdmin: boolean;
+  }  
 
 beforeAll(() => unmock.on());
 afterAll(() => unmock.off());
 
-const splitUsers = async () => {
+const fetchUsersAndSplitIntoBiggiesAndBabies = async () => {
   const { data } = await axios("https://api.myservice.io/users");
+  const partition = _.partition(data, (user: User) => user.age !== 0);
   return {
-    seniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age >= 65
-    ) as User[],
-    juniorAdmin: data.filter(
-      (user: User) => user.isAdmin && user.age < 65
-    ) as User[],
-    unknownAgeAdmin: data.filter(
-      (user: User) => user.isAdmin && !user.age
-    ) as User[],
-    notAdmin: data.filter((user: User) => !user.isAdmin) as User[]
+    biggies: partition[0] as User[],
+    babies: partition[1] as User[]
   };
 };
 
 test(
-  "only seniors are in seniorAdmin",
+  "randomly generated users from our API are split into biggies and babies",
   runner(async () => {
-    const split = await splitUsers();
-    split.seniorAdmin.forEach(user => {
-      expect(user.age).toBeGreaterThanOrEqual(65);
-      expect(user.isAdmin).toBe(true);
+    const split = await fetchUsersAndSplitIntoBiggiesAndBabies();
+    split.biggies.forEach(user => {
+      expect(user.age).toBeGreaterThan(0);
     });
-    split.juniorAdmin.forEach(user => {
-      expect(user.age).toBeLessThan(65);
-      expect(user.isAdmin).toBe(true);
-    });
-    split.unknownAgeAdmin.forEach(user => {
-      expect(user.age).toBe(null);
-      expect(user.isAdmin).toBe(true);
+    split.babies.forEach(user => {
+      expect(user.age).toBe(0);
     });
   })
 );
+
