@@ -19,11 +19,6 @@ unmock
   .delete("/users/{id}")
   .reply(201);
 
-interface User {
-  id: number;
-  isAdmin: boolean;
-}
-
 let myservice: IService;
 beforeAll(() => {
   myservice = unmock.on().services.myservice;
