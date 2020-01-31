@@ -13,12 +13,15 @@ import { IService } from "unmock-core/dist/service/interfaces";
 unmock
   .nock("https://api.myservice.io", "myservice")
   .get("/users/")
-  .reply(200, {
-    users: u.array({ id: u.integer(), name: u.string("name.firstName") })
-  });
+  .reply(200, u.array({
+    id: u.integer(),
+    age: u.opt(u.integer({ minimum: 0 })),
+    isAdmin: u.boolean()
+  }));
 
 interface User {
   id: number;
+  age?: number;
   isAdmin: boolean;
 }
 
@@ -32,11 +35,12 @@ afterAll(() => {
 
 const getUsers = async () => {
   const { data } = await axios("https://api.myservice.io/users/");
-  return { users: data, timestamp: new Date().getTime() };
+  data.timestamp = new Date().getTime();
+  return data;
 };
 
-test("the users object is correctly blended into the timestamped object", async () => {
+test("the users has a list of users and a timestamp", async () => {
   const users = await getUsers();
-  expect(users).toMatchObject(JSON.parse(myservice.spy.getResponseBody()));
+  expect(users.users).toMatchObject(JSON.parse(myservice.spy.getResponseBody() || ""));
   expect(users.timestamp).toBeGreaterThan(0);
 });
