@@ -44,17 +44,6 @@ const splitUsers = async () => {
 };
 
 test(
-  "when error is true, arrays are always empty",
-  runner(async () => {
-    const split = await splitUsers();
-    if (split.error) {
-      expect(split.admin.length).toBe(0);
-      expect(split.notAdmin.length).toBe(0);
-    }
-  })
-);
-
-test(
   "an error cannot be produced after one successful outcome",
   runner(async () => {
     myservice.state(times(1)(withCodes(200)));
