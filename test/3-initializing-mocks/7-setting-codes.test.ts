@@ -18,12 +18,17 @@ const { withoutCodes } = transform;
 unmock
   .nock("https://api.myservice.io", "myservice")
   .get("/users")
-  .reply(200, { users: u.array({ id: u.number(), isAdmin: u.boolean() }) })
+  .reply(200, u.array({
+    id: u.integer(),
+    age: u.opt(u.integer({ minimum: 0 })),
+    isAdmin: u.boolean()
+  }))
   .reply(401, { message: "Not authorized" })
   .reply(404, { message: "Not found" });
 
 interface User {
   id: number;
+  age?: number;
   isAdmin: boolean;
 }
 

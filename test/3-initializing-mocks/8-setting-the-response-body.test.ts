@@ -51,7 +51,7 @@ const electAdmin = async () => {
 };
 
 test(
-  "we will always be able to elect an admin",
+  "electAdmin does not cause irregular behavior when there are no electable users",
   runner(async () => {
     myservice.state(
       withCodes(200),

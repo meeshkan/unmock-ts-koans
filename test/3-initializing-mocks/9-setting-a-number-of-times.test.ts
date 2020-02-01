@@ -55,7 +55,7 @@ test(
 );
 
 test(
-  "the first and second call to our API will always return 200",
+  "an error cannot be produced after one successful outcome",
   runner(async () => {
     myservice.state(times(1)(withCodes(200)));
     const split0 = await splitUsers();
