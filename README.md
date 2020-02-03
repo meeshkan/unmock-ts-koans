@@ -40,4 +40,4 @@ If you've completed the koans and want to share your answers, just make a PR! Ch
 
 Some people that have shared their branches have added extra tests. If you want your test to be merged into the main branch, please make a PR to `master` with the "wrong" version and `answers` with the correction.
 
-Please note that this project is governed by the [Unmock Community Code of Conduct](https://github.com/unmock/code-of-conduct). By participating in this project, you agree to abide by its terms.
+Please note that this project is governed by the [Meeshkan Community Code of Conduct](https://github.com/meeshkan/code-of-conduct). By participating in this project, you agree to abide by its terms.
