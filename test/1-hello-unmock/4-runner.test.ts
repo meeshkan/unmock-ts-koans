@@ -18,7 +18,8 @@
 // we are generating an `id` field, but where did our `isAdmin`
 // field go? can you see how to generate it?
 
-import unmock, { u, runner } from "unmock";
+import unmock, { u } from "unmock";
+import jestRunner from "unmock-jest-runner";
 import axios from "axios";
 import _ from "lodash";
 
@@ -51,7 +52,7 @@ const fetchUsersAndSplitIntoBiggiesAndBabies = async () => {
 
 test(
   "randomly generated users from our API are split into biggies and babies",
-  runner(async () => {
+  jestRunner(async () => {
     const split = await fetchUsersAndSplitIntoBiggiesAndBabies();
     split.biggies.forEach(user => {
       expect(user.age).toBeGreaterThan(0);

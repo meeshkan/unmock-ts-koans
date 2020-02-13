@@ -24,10 +24,11 @@
     "prettier": "^1.18.2",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3",
-    "unmock-jest": "^0.3.12"
+    "unmock-jest": "^0.3.12",
+    "unmock-jest-runner": "0.0.0"
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "unmock": "^0.3.12"
+    "unmock": "^0.3.14"
   }
 }
