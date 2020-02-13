@@ -9,7 +9,8 @@
 // we probably should have used withCodes to include only successful
 // responses instead of withoutCodes. can you fix that?
 
-import unmock, { u, runner, transform } from "unmock";
+import unmock, { u, transform } from "unmock";
+import jestRunner from "unmock-jest-runner";
 import axios from "axios";
 import { IService } from "unmock-core/dist/service/interfaces";
 
@@ -55,7 +56,7 @@ const splitUsers = async () => {
 
 test(
   "when error is true, arrays are always empty",
-  runner(async () => {
+  jestRunner(async () => {
     const split = await splitUsers();
     if (split.error) {
       expect(split.admin.length).toBe(0);
@@ -66,7 +67,7 @@ test(
 
 test(
   "200 will never yield error",
-  runner(async () => {
+  jestRunner(async () => {
     myservice.state(withoutCodes(401));
     const split = await splitUsers();
     expect(split.error).toBe(false);
