@@ -10,7 +10,8 @@
 // Can you see why? Can you propose a sensible
 // fix to the function without changing the API?
 
-import unmock, { u, runner } from "unmock";
+import unmock, { u } from "unmock";
+import jestRunner from "unmock-jest-runner";
 import axios from "axios";
 
 unmock
@@ -50,7 +51,7 @@ const splitUsers = async () => {
 
 test(
   "only seniors are in seniorAdmin",
-  runner(async () => {
+  jestRunner(async () => {
     const split = await splitUsers();
     split.seniorAdmin.forEach(user => {
       expect(user.age).toBeGreaterThanOrEqual(65);
