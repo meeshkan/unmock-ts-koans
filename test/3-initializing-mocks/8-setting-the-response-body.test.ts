@@ -7,7 +7,7 @@
 // to reflect what it actually does.
 
 import unmock, { u, transform } from "unmock";
-import jestRunner from "unmock-jest-runner";
+import runner from "unmock-jest-runner";
 import axios from "axios";
 import { IService } from "unmock-core/dist/service/interfaces";
 
@@ -56,7 +56,7 @@ const electAdmin = async () => {
 
 test(
   "we will always be able to elect an admin",
-  jestRunner(async () => {
+  runner(async () => {
     myservice.state(
       withCodes(200),
       responseBody({ lens: ["users"] }).const([])

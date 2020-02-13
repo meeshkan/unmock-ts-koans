@@ -11,7 +11,7 @@
 // fix to the function without changing the API?
 
 import unmock, { u } from "unmock";
-import jestRunner from "unmock-jest-runner";
+import runner from "unmock-jest-runner";
 import axios from "axios";
 
 unmock
@@ -51,7 +51,7 @@ const splitUsers = async () => {
 
 test(
   "only seniors are in seniorAdmin",
-  jestRunner(async () => {
+  runner(async () => {
     const split = await splitUsers();
     split.seniorAdmin.forEach(user => {
       expect(user.age).toBeGreaterThanOrEqual(65);

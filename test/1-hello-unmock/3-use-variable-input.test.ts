@@ -10,7 +10,7 @@
 // field go? can you see how to generate it?
 
 import unmock, { u } from "unmock";
-import jestRunner from "unmock-jest-runner";
+import runner from "unmock-jest-runner";
 import axios from "axios";
 
 unmock
@@ -36,7 +36,7 @@ const splitUsers = async () => {
 
 test(
   "randomly generated users from our API are split into admins and nonAdmins",
-  jestRunner(async () => {
+  runner(async () => {
     const split = await splitUsers();
     split.admin.forEach(user => {
       expect(user.isAdmin).toBe(true);
