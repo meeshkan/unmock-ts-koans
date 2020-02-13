@@ -19,7 +19,7 @@
 // field go? can you see how to generate it?
 
 import unmock, { u } from "unmock";
-import jestRunner from "unmock-jest-runner";
+import runner from "unmock-jest-runner";
 import axios from "axios";
 import _ from "lodash";
 
@@ -52,7 +52,7 @@ const fetchUsersAndSplitIntoBiggiesAndBabies = async () => {
 
 test(
   "randomly generated users from our API are split into biggies and babies",
-  jestRunner(async () => {
+  runner(async () => {
     const split = await fetchUsersAndSplitIntoBiggiesAndBabies();
     split.biggies.forEach(user => {
       expect(user.age).toBeGreaterThan(0);

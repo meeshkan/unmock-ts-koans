@@ -5,7 +5,7 @@
 // uses the wrong number. can you change it to the right one?
 
 import unmock, { u, transform } from "unmock";
-import jestRunner from "unmock-jest-runner";
+import runner from "unmock-jest-runner";
 import axios from "axios";
 import { IService } from "unmock-core/dist/service/interfaces";
 
@@ -46,7 +46,7 @@ const splitUsers = async () => {
 
 test(
   "an error cannot be produced after one successful outcome",
-  jestRunner(async () => {
+  runner(async () => {
     myservice.state(times(1)(withCodes(200)));
     const split0 = await splitUsers();
     expect(split0.error).toBe(false);
