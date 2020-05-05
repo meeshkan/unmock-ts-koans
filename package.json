@@ -6,7 +6,7 @@
     "lint": "prettier --check \"test/**/*.ts\"",
     "lint-fix": "prettier --write \"test/**/*.ts\"",
     "test": "jest",
-    "test-1": "jest test/1-hello-unmock/1-a-simple-test.test.ts",
+    "test-1": "jest test/1-hello-unmock/1-a-unit-test.test.ts",
     "test-2": "jest test/1-hello-unmock/2-same-with-an-api.test.ts",
     "test-3": "jest test/1-hello-unmock/3-use-variable-input.test.ts",
     "test-4": "jest test/1-hello-unmock/4-runner.test.ts",
